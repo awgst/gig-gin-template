@@ -1,6 +1,6 @@
 FROM golang:latest
 
-WORKDIR /go/src/app/
+WORKDIR /app/
 
 COPY . .
 
@@ -10,6 +10,6 @@ RUN go install -mod=mod github.com/githubnemo/CompileDaemon
 
 EXPOSE ${APP_PORT}
 
-WORKDIR /cmd
+WORKDIR /cmd/
 
 ENTRYPOINT CompileDaemon --build="go build main.go" --command="./main"%
