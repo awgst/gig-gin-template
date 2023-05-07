@@ -10,6 +10,4 @@ RUN go install -mod=mod github.com/githubnemo/CompileDaemon
 
 EXPOSE ${APP_PORT}
 
-WORKDIR /cmd/
-
-ENTRYPOINT CompileDaemon --build="go build main.go" --command="./main"%
+ENTRYPOINT CompileDaemon --build="go build -o main cmd/main.go" --command="./main"
