@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"gig-gin-template/pkg/http"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -10,7 +10,10 @@ import (
 // Api routes list
 func apiRoutes(r *gin.Engine, db *gorm.DB) {
 	api := r.Group("/api")
-	api.GET("/", func(c *gin.Context) {
-		http.Json(c, "GIG help faster Go project development. More informations --> https://github.com/awgst/gig", nil)
+	api.GET("/ping", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"data": "pong",
+		})
 	})
+	// Define your routes here
 }

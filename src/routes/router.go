@@ -7,7 +7,10 @@ import (
 
 // List of app routes
 func AppRoutes(r *gin.Engine, db *gorm.DB) {
+	r.GET("/", func(ctx *gin.Context) {
+		ctx.HTML(200, "index.html", gin.H{})
+	})
+	// Define your routes group here ...
 	apiRoutes(r, db)
-	// Write your routes group here ...
 
 }
