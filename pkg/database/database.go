@@ -45,16 +45,5 @@ func getDbDsn() string {
 
 	config := config.Database()[driver]
 
-	dbDsn := map[string]string{
-		"mysql": fmt.Sprintf(
-			"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-			config["username"],
-			config["password"],
-			config["host"],
-			config["port"],
-			config["database"],
-		),
-	}
-
-	return dbDsn[driver]
+	return config.DbDsn()
 }
