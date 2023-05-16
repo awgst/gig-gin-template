@@ -1,16 +1,15 @@
 package seeder
 
-import (
-	"gorm.io/gorm"
-)
+import "gig-gin-template/pkg/database"
 
 type SeederInterface interface {
-	Seed(db *gorm.DB)
+	Seed(count int)
 }
 
 func Execute() {
-	// Uncomment this line
-	// db := database.Connect()
+	db := database.Connect()
 
 	// Your seeder here
+	userSeeder := UserSeeder{DB: db}
+	userSeeder.Seed(1)
 }
