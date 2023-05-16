@@ -21,6 +21,14 @@ func Database() conf {
 			Password: env.Get("DB_PASSWORD", ""),
 			Database: env.Get("DB_DATABASE", "gig"),
 		},
+		"postgresql": &database.PostgreSql{
+			Host:     env.Get("DB_HOST", "localhost"),
+			Port:     env.Get("DB_PORT", "5432"),
+			Username: env.Get("DB_USERNAME", "root"),
+			Password: env.Get("DB_PASSWORD", ""),
+			Database: env.Get("DB_DATABASE", "gig"),
+			TimeZone: env.Get("DB_TIMEZONE", "Asia/Jakarta"),
+		},
 		// Your database configuration here
 	}
 }

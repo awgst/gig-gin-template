@@ -8,12 +8,14 @@ import (
 
 	"golang.org/x/exp/slices"
 	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 // All valid drivers
 var validDrivers = []string{
 	"mysql",
+	"postgresql",
 }
 
 // Database driver that get from .env
@@ -21,7 +23,8 @@ var driver = env.Get("DB_DRIVER", "")
 
 // Dialector for open connection based on driver
 var dialectors = map[string]gorm.Dialector{
-	"mysql": mysql.Open(getDbDsn()),
+	"mysql":      mysql.Open(getDbDsn()),
+	"postgresql": postgres.Open(getDbDsn()),
 }
 
 // Connect and return *gorm.DB connection
