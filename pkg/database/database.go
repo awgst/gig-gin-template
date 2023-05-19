@@ -42,7 +42,7 @@ func Connect() *gorm.DB {
 
 // Convert map database configuration into single line database dsn
 func getDbDsn() string {
-	if slices.Contains(validDrivers, driver) {
+	if !slices.Contains(validDrivers, driver) {
 		log.Fatalf("Driver %s is unavailable", driver)
 	}
 
