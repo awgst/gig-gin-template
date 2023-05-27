@@ -7,8 +7,8 @@ type SeederInterface interface {
 }
 
 func Execute() {
-	db := database.Connect()
-
+	conn := database.Connection{}
+	db := conn.SQL
 	// Your seeder here
 	userSeeder := UserSeeder{DB: db}
 	userSeeder.Seed(1)

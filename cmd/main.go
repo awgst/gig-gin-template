@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	router.Run(database.Connect())
+	router.Run(database.Connection{})
 }

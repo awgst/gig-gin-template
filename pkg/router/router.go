@@ -2,16 +2,16 @@ package router
 
 import (
 	"fmt"
+	"gig-gin-template/pkg/database"
 	"gig-gin-template/pkg/env"
 	"gig-gin-template/src/routes"
 	"path/filepath"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // Run router
-func Run(db *gorm.DB) {
+func Run(db database.Connection) {
 	path, _ := filepath.Abs("./pkg/templates/index.html")
 	ginMode := env.Get("GIN_MODE", gin.DebugMode)
 	if ginMode == gin.ReleaseMode {

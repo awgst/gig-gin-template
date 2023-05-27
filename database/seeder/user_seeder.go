@@ -1,9 +1,9 @@
 package seeder
 
-import "gorm.io/gorm"
+import "database/sql"
 
 type UserSeeder struct {
-	DB *gorm.DB
+	DB *sql.DB
 }
 
 func (s *UserSeeder) Seed(count int) {
