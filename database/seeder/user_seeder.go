@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	insertQuery = `INSERT INTO users (name, email, password, created_at, updated_at) VALUES `
+	insertQuery = `INSERT INTO users (created_at, updated_at) VALUES `
 )
 
 type UserSeeder struct {
@@ -30,9 +30,9 @@ func (s *UserSeeder) Seed(ctx context.Context, count int) {
 			CreatedAt: time.Now(),
 			UpdatedAt: time.Now(),
 		}
-		users = append(users, user.Name, user.Email, user.Password, user.CreatedAt, user.UpdatedAt)
+		users = append(users, user.CreatedAt, user.UpdatedAt)
 
-		stmtBuilder.WriteString("(?, ?, ?, ?, ?)")
+		stmtBuilder.WriteString("(?, ?)")
 		if i != count-1 {
 			stmtBuilder.WriteString(", ")
 		}
