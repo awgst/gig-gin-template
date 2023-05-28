@@ -6,5 +6,7 @@ import (
 )
 
 func main() {
-	router.Run(database.Connection{})
+	router.Run(database.Connection{
+		SQL: database.ConnectSql(),
+	})
 }
