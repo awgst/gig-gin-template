@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	conf "gig-gin-template/src/config"
+
 	"gorm.io/gorm"
 )
 
@@ -11,14 +13,16 @@ import (
 // Uncomment the code based on your database driver
 // Run go get gorm.io/driver/{driver_name} to install the driver
 // Example: go get gorm.io/driver/mysql and import "gorm.io/driver/mysql"
-var dialectors = map[string]gorm.Dialector{
-	// "mysql":      mysql.Open(getDbDsn()),
-	// "postgres": postgres.Open(getDbDsn()),
+var dialectors = func(driver, dsn string) gorm.Dialector {
+	return map[string]gorm.Dialector{
+		// "mysql":      mysql.Open(dsn),
+		// "postgres": postgres.Open(dsn),
+	}[driver]
 }
 
 // Connect and return *gorm.DB connection
-func ConnectGorm() *gorm.DB {
-	dialector := dialectors[driver]
+func ConnectGorm(driver string, config conf.DatabaseConfig) *gorm.DB {
+	dialector := dialectors(driver, config.DbDsn())
 	db, err := gorm.Open(dialector, &gorm.Config{})
 
 	if err != nil {

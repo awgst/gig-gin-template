@@ -10,11 +10,8 @@ import (
 	// _ "github.com/lib/pq"
 )
 
-func ConnectSql(config ...conf.DatabaseConfig) *sql.DB {
-	dbDsn := getDbDsn()
-	if len(config) > 0 {
-		dbDsn = config[0].DbDsn()
-	}
+func ConnectSql(driver string, config conf.DatabaseConfig) *sql.DB {
+	dbDsn := config.DbDsn()
 
 	// Open database connection
 	db, err := sql.Open(driver, dbDsn)

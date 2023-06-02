@@ -1,3 +1,4 @@
+// go:build ignore
 package seeder
 
 import (
@@ -7,6 +8,10 @@ import (
 	conf "gig-gin-template/src/config/database"
 )
 
+func init() {
+	env.Load()
+}
+
 type SeederInterface interface {
 	Seed(ctx context.Context, count int)
 }
@@ -14,7 +19,7 @@ type SeederInterface interface {
 func Execute() {
 	ctx := context.Background()
 	conn := database.Connection{
-		SQL: database.ConnectSql(&conf.MySql{
+		SQL: database.ConnectSql(env.Get("DB_DRIVER"), &conf.MySql{
 			Host:     env.Get("FORWARD_DB_HOST", "localhost"),
 			Port:     env.Get("FORWARD_DB_PORT", "3306"),
 			Username: env.Get("DB_USERNAME", "root"),
